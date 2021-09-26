@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master, hotfixes, release,develop ]
+    branches: [ master, hotfixes, release,develop,services ]
   pull_request:
-    branches: [ master, hotfixes, release, develop ]
+    branches: [ master, hotfixes, release, develop, services ]
 
 jobs:
   build:
@@ -26,4 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
+    - run: npm cli
+    - run: npm run build --if-present
+    - run: npm test-headless
